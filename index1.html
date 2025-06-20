@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Queiroz Reis - Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Degradê para Header e Footer */
+            --header-gradient-start: #4A0070; /* Roxo mais escuro */
+            --header-gradient-end: #8A2BE2;   /* Roxo vibrante (Amethyst) */
+            
+            /* Cores de Fundo */
+            --background-dark: #121212; /* Fundo preto sólido */
+            --card-background: #1E1E1E; /* Fundo de card mais escuro */
+
+            /* Cores de Texto e Destaque */
+            --text-primary: #F8F8F8; /* Texto principal claro */
+            --text-secondary: #D1C4E9; /* Texto secundário/parágrafos em roxo bem claro */
+            --accent-purple-light: #BB86FC; /* Roxo claro vibrante para títulos e destaques */
+            
+            /* Sombras */
+            --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.2);
+            --shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-dark); /* Fundo preto sólido */
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            /* Degradê roxo chamativo no header */
+            background: linear-gradient(to right, var(--header-gradient-start), var(--header-gradient-end));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 40px; 
+            position: relative; /* Para o pseudo-elemento de brilho */
+            overflow: hidden; /* Garante que o brilho não vaze */
+        }
+
+        /* Efeito de brilho sutil no header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+            transform: rotate(45deg);
+            animation: pulse-light 5s infinite ease-in-out;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-light {
+            0% { opacity: 0.8; transform: scale(1) rotate(45deg); }
+            50% { opacity: 1; transform: scale(1.05) rotate(45deg); }
+            100% { opacity: 0.8; transform: scale(1) rotate(45deg); }
+        }
+
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: var(--accent-purple-light); 
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--accent-purple-light); /* Linha em roxo vibrante */
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-me, .skills {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(var(--header-gradient-end), 0.2); 
+        }
+
+        .about-me p {
+            font-size: 1.1em;
+            text-align: justify;
+            color: var(--text-secondary); 
+        }
+
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skills ul li {
+            background-color: rgba(var(--header-gradient-start), 0.3); /* Fundo dos itens da lista com transparência */
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--accent-purple-light); 
+            text-align: center;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease;
+            border: 1px solid rgba(var(--header-gradient-end), 0.3); 
+        }
+
+        .skills ul li:hover {
+            transform: translateY(-5px);
+            background-color: rgba(var(--header-gradient-end), 0.4); 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(var(--header-gradient-end), 0.2); 
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong); 
+        }
+
+        .project-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card h3 {
+            color: var(--accent-purple-light); 
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .project-card p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            color: var(--text-secondary); 
+        }
+
+        .project-card .links {
+            margin-top: 15px;
+            text-align: center; /* Centraliza os botões */
+        }
+
+        .project-card .links a {
+            display: inline-block;
+            background: linear-gradient(to right, var(--header-gradient-start), var(--header-gradient-end)); /* Degradê nos botões */
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            margin: 5px; /* Espaçamento entre botões */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card .links a:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        footer {
+            /* Degradê roxo chamativo no footer */
+            background: linear-gradient(to right, var(--header-gradient-start), var(--header-gradient-end));
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            position: relative; /* Para o pseudo-elemento de brilho */
+            overflow: hidden; /* Garante que o brilho não vaze */
+        }
+
+        /* Efeito de brilho sutil no footer */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+            transform: rotate(-45deg);
+            animation: pulse-light 5s infinite ease-in-out;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .about-me, .skills {
+                padding: 30px;
+            }
+            .skills ul {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-card-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Gabriel Queiroz Reis</h1>
+            <p>Especialista em IA e Desenvolvedor Versátil</p>
+            <p>Unindo a inovação da Inteligência Artificial com o poder de diversas linguagens de programação</p>
+        </div>
+    </header>
+
+    <section id="sobre" class="container">
+        <div class="about-me">
+            <h2>Sobre Mim</h2>
+            <p>
+                Olá! Sou Gabriel Queiroz Reis, tenho 24 anos e dedico-me a desvendar e aplicar o potencial da <strong>Inteligência Artificial</strong> em soluções digitais criativas e eficazes. Minha expertise se estende desde a <strong>engenharia de prompts avançada</strong> – otimizando a interação com IAs generativas – até a construção de sistemas robustos utilizando <strong>diversas linguagens de programação</strong>.
+            </p>
+            <p>
+                Minha paixão reside em traduzir ideias complexas em ferramentas funcionais, seja automatizando processos, desenvolvendo interfaces intuitivas ou criando experiências visuais únicas. Busco sempre a sinergia entre o poder da IA e a flexibilidade do código para entregar inovação e valor tangível.
+            </p>
+        </div>
+    </section>
+
+    <section id="habilidades" class="container">
+        <div class="skills">
+            <h2>Minhas Habilidades</h2>
+            <ul>
+                <li><strong>Inteligência Artificial:</strong> Engenharia de Prompts, IA Generativa (Texto, Imagem), Automação Inteligente</li>
+                <li><strong>Desenvolvimento Web:</strong> HTML, CSS, JavaScript (e frameworks como React, Vue, Angular, se usar)</li>
+                <li><strong>Backend & Lógicas:</strong> Python, Node.js (e outras linguagens que você domina, ex: Java, C#, PHP)</li>
+                <li><strong>Banco de Dados:</strong> SQL (ex: MySQL, PostgreSQL, SQLite)</li>
+                <li><strong>Design & Mídia com IA:</strong> Geração e Otimização de Imagens Temáticas, Conceitos Visuais</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projetos" class="container">
+        <h2>Projetos em Destaque</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Bots de Automação de Vendas e Suporte (Discord)</h3>
+                    <p>Desenvolvimento e implementação de bots customizados para o Discord, focados na <strong>automação de vendas via tickets</strong> e gestão de suporte. Utilizando IA para interações fluidas e lógicas de programação em <strong>Python/Node.js</strong>, estes bots otimizam a experiência do usuário e os fluxos de trabalho.</p>
+                    <div class="links">
+                        <a href="#contato">Saiba Mais</a> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Sites para Organização e Cálculos</h3>
+                    <p>Criação de websites funcionais e intuitivos para organização de dados e execução de cálculos complexos. Combino <strong>HTML, CSS e JavaScript</strong> com a assistência da IA para otimizar a estrutura e usabilidade, oferecendo ferramentas eficientes para gestão e análise.</p>
+                    <div class="links">
+                        <a href="https://mininix-san.github.io/topup-portugues/" target="_blank">Ver TopUp PT</a>
+                        <a href="https://mininix-san.github.io/topup-NC/" target="_blank">Ver TopUp NC</a>
+                        <a href="https://mininix-san.github.io/precos/" target="_blank">Ver Preços</a>
+                        <a href="https://mininix-san.github.io/wemix/" target="_blank">Ver Wemix</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card-content">
+                    <h3>Geração e Otimização de Imagens</h3>
+                    <p>Utilizo <strong>Inteligência Artificial Generativa</strong> para criar imagens temáticas, arte conceitual e elementos visuais únicos. Além da geração, aprimoro a qualidade de imagens existentes, restaurando detalhes e elevando a resolução, garantindo resultados visuais de alta qualidade.</p>
+                    <div class="links">
+                        <a href="#contato">Ver Exemplos</a> 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contato" class="container">
+        <h2>Vamos Conectar!</h2>
+        <div class="about-me" style="text-align: center;">
+            <p>Interessado em como a <strong>Inteligência Artificial</strong> e a <strong>programação</strong> podem impulsionar o seu próximo projeto? Adoraria conversar sobre suas ideias e necessidades.</p>
+            <p>Sinta-se à vontade para entrar em contato:</p>
+            <p style="font-size: 1.2em; font-weight: 600;">
+                E-mail: <a href="mailto:gabrielqueirozreis@outlook.com" style="color: var(--accent-purple-light); text-decoration: none;">gabrielqueirozreis@outlook.com</a>
+            </p>
+            <div class="social-links" style="margin-top: 20px;">
+                <a href="https://github.com/Mininix-San" target="_blank" style="margin: 0 10px; color: var(--accent-purple-light);">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gabriel Queiroz Reis. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
